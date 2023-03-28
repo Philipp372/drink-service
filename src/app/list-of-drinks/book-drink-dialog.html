@@ -1,0 +1,29 @@
+<div class="main">
+    <p>
+        Wieviele Getränke von {{ data.name }}?
+    </p>
+    <mat-form-field appearance="fill" width="400">
+        <mat-label>Getränkeanzahl auswählen</mat-label>
+        <mat-select [formControl]="drinkCountFormControl" multiple>
+        <mat-option *ngFor="let drinkCount of drinkCountList" [value]="drinkCount">{{drinkCount}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <p>
+        Auf wen darf gebucht werden?
+    </p>
+    <mat-form-field appearance="fill">
+        <mat-label>Ein oder mehrere Personen auswählen</mat-label>
+        <mat-select [formControl]="personFormControl" multiple>
+        <mat-option *ngFor="let person of personList" [value]="person">{{person}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <span class="drink-count-hint">
+        Die ausgewählte Getränkeanzahl wird auf alle angegebenen Personen gebucht!
+    </span>
+    <p>
+        <button mat-fab extended color="primary">
+            <mat-icon>done_outline</mat-icon> <!-- https://www.angularjswiki.com/angular/angular-material-icons-list-mat-icon-list/ -->
+        Buchung abschließen
+        </button>
+    </p>
+</div>
