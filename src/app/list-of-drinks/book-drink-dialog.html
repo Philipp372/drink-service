@@ -2,7 +2,8 @@
     <p>
         Wieviele Getränke von {{ data.name }}?
     </p>
-    <form #bookingForm="ngForm" class="mt-3" (ngSubmit)="performBooking(bookingForm)">
+    
+    <form #bookingForm="ngForm" class="mt-3" (ngSubmit)="performBooking(bookingForm, data)">
     <mat-form-field appearance="fill" width="400">
         <mat-label>Getränkeanzahl auswählen</mat-label>
         <mat-select matInput ngModel name="drinkCount"> <!-- [formControl]="drinkCountFormControl" -->

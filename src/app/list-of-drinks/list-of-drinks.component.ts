@@ -44,7 +44,7 @@ export class ListOfDrinksComponent {
       width: '400px',
       enterAnimationDuration,
       exitAnimationDuration,
-      data: { drink: drink }
+      data: drink
     });
   }
 }
@@ -62,26 +62,35 @@ export class BookDrinkDialog {
   personList: User[] = [];
 
   constructor(public dialogRef: MatDialogRef<BookDrinkDialog>, @Inject(MAT_DIALOG_DATA) public data: DrinksData, private httpClient: HttpClient) {
-    this.httpClient.get('https://drinkservice-11fde-default-rtdb.europe-west1.firebasedatabase.app/users.json').subscribe(response => {
-      console.log('Firebase Users:', response)
-      let personArray = Object.values(response)
-      console.log('personArray: ',personArray)
-      this.personList = personArray
-      
+    this.httpClient.get('https://drinkservice-11fde-default-rtdb.europe-west1.firebasedatabase.app/users.json')
+    .subscribe({
+      next: (response) => {
+        console.log('Firebase Users:', response)
+        let personArray = Object.values(response)
+        console.log('personArray: ',personArray)
+        this.personList = personArray
+      },
+      error: (e) => {
+      console.error(e)
+      // Show error
+      },
+      complete: () => {}
     })
   }
 
-  performBooking(bookingForm: NgForm) {
-    console.log(bookingForm.value)
+  performBooking(bookingForm: NgForm, drink: DrinksData) {
+    console.log('performBooking() bookingForm.value=',bookingForm.value, ' // drink=',drink)
 
     let drinkCount: number = bookingForm.value.drinkCount
     let personsToBook: User[] = bookingForm.value.persons
+    let drinkId: string = drink.drinkId
+
     personsToBook.forEach(person => {
       let bookingObject: DrinkBooking = new DrinkBooking(
         'phil',
         person.userName,
         drinkCount,
-        '',
+        drinkId,
         Date.now()
       )
       this.httpClient.post(

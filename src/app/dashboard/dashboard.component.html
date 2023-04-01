@@ -1,1 +1,49 @@
-<h2 class="text-center">dashboard works</h2>
+<!-- <h2 class="text-center">dashboard works</h2> -->
+
+<!-- <p>overallBookingsCount: {{overallBookingsCount}}</p>
+<p>overallDrinkCount: {{overallDrinkCount}}</p> -->
+
+<mat-grid-list cols="2" rowHeight="150">
+    <mat-grid-tile>
+        <mat-card class="main-card">
+            <mat-card-header>
+                <mat-card-title-group>
+                    <mat-card-title>Anzahl Buchungen Gesamt</mat-card-title>
+                    <mat-card-subtitle>{{overallBookingsCount}}</mat-card-subtitle>
+                    <img mat-card-sm-image src="assets/overallBookingCount.png">
+                </mat-card-title-group>
+            </mat-card-header>
+            <!-- <mat-card-content>
+      Text
+    </mat-card-content> -->
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card class="main-card">
+            <mat-card-header>
+                <mat-card-title-group>
+                    <mat-card-title>Konsumierte Getränke Gesamt</mat-card-title>
+                    <mat-card-subtitle>{{overallDrinkCount}}</mat-card-subtitle>
+                    <img mat-card-sm-image src="assets/overallDrinkCount.png">
+                </mat-card-title-group>
+            </mat-card-header>
+            <!-- <mat-card-content>
+      Text
+    </mat-card-content> -->
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<div class="grid-container">
+    <mat-grid-list cols="3" rowHeight="150">
+        <mat-grid-tile [colspan]="1" [rowspan]="1" *ngFor="let drinkConsumationItem of drinkConsumationData">
+            <mat-card class="mat-elevation-z8 card-prop">
+                <mat-card-header>
+                    <mat-card-title>{{drinkConsumationItem.name}} </mat-card-title>
+                    <mat-card-subtitle>{{drinkConsumationItem.consumationCount}}<br/>{{drinkConsumationItem.bookingCount}}</mat-card-subtitle>
+                    <img mat-card-sm-image src="assets/{{drinkConsumationItem.imageUrl}}">
+                </mat-card-header>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

@@ -20,6 +20,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MatCard, MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list'
 
 
 const routes: Routes = [
@@ -56,6 +58,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatSelectModule,
     BrowserModule,
+    MatCardModule,
+    MatGridListModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],
