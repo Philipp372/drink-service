@@ -2,7 +2,7 @@
      <!-- Image Column -->
      <ng-container matColumnDef="imageUrl">
         <th mat-header-cell *matHeaderCellDef> Bild </th>
-        <td mat-cell *matCellDef="let element" class="col-1 text-center"><img src="assets/{{(element.imageUrl ? element.imageUrl : '')}}" [style.width.px]="calculateWidth(element.imageSize)"/> </td>
+        <td mat-cell *matCellDef="let element" class="col-1 text-center"><img src="../../assets/{{(element.imageUrl ? element.imageUrl : '')}}" [style.width.px]="calculateWidth(element.imageSize)"/> </td>
     </ng-container>
 
     <!-- Name Column -->
