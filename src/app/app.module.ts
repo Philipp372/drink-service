@@ -18,13 +18,15 @@ import { BookDrinkDialog } from './list-of-drinks/list-of-drinks.component'
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, },
   { path: 'list-of-drinks', component: ListOfDrinksComponent },
-  { path: '',   redirectTo: '/dashboard', pathMatch: 'full' }
+  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  // { path: '', redirectTo: '/dashboard', pathMatch: 'full' },  
   // { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
 ]
 
@@ -41,6 +43,7 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     LayoutModule,
+    HttpClientModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
@@ -49,6 +52,7 @@ const routes: Routes = [
     MatTableModule,
     MatDialogModule,
     MatFormFieldModule,
+    FormsModule,
     ReactiveFormsModule,
     MatSelectModule,
     BrowserModule,
