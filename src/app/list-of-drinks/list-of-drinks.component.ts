@@ -2,7 +2,10 @@ import { Component, Inject } from '@angular/core';
 import { DrinksData } from 'shared/DrinksData';
 import { DrinksService } from './drinks.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormControl } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { User } from 'shared/Users';
+import { DrinkBooking } from 'shared/DrinkBooking';
 
 @Component({
   selector: 'app-list-of-drinks',
@@ -41,7 +44,7 @@ export class ListOfDrinksComponent {
       width: '400px',
       enterAnimationDuration,
       exitAnimationDuration,
-      data: { drink: drink }
+      data: drink
     });
   }
 }
@@ -53,10 +56,59 @@ export class ListOfDrinksComponent {
 })
 export class BookDrinkDialog {
   public drinkName: string = ""
-  drinkCountFormControl = new FormControl('')
-  personFormControl = new FormControl('');
+  // drinkCountFormControl = new FormControl('')
+  // personFormControl = new FormControl('');
   drinkCountList: number[] = [1, 2, 3, 4, 5, 6, 7, 8]
-  personList: string[] = ['Gerhard', 'Richard', 'Herbert', 'Philipp', 'Craig', 'Stefan', 'Peter'];
+  personList: User[] = [];
 
-  constructor(public dialogRef: MatDialogRef<BookDrinkDialog>, @Inject(MAT_DIALOG_DATA) public data: DrinksData) {}
+  constructor(public dialogRef: MatDialogRef<BookDrinkDialog>, @Inject(MAT_DIALOG_DATA) public data: DrinksData, private httpClient: HttpClient) {
+    this.httpClient.get('https://drinkservice-11fde-default-rtdb.europe-west1.firebasedatabase.app/users.json')
+    .subscribe({
+      next: (response) => {
+        console.log('Firebase Users:', response)
+        let personArray = Object.values(response)
+        console.log('personArray: ',personArray)
+        this.personList = personArray
+      },
+      error: (e) => {
+      console.error(e)
+      // Show error
+      },
+      complete: () => {}
+    })
+  }
+
+  performBooking(bookingForm: NgForm, drink: DrinksData) {
+    console.log('performBooking() bookingForm.value=',bookingForm.value, ' // drink=',drink)
+
+    let drinkCount: number = bookingForm.value.drinkCount
+    let personsToBook: User[] = bookingForm.value.persons
+    let drinkId: string = drink.drinkId
+
+    personsToBook.forEach(person => {
+      let bookingObject: DrinkBooking = new DrinkBooking(
+        'phil',
+        person.userName,
+        drinkCount,
+        drinkId,
+        Date.now()
+      )
+      this.httpClient.post(
+        'https://drinkservice-11fde-default-rtdb.europe-west1.firebasedatabase.app/bookings.json'
+        , bookingObject
+      )
+      .subscribe({
+        next: (v) => console.log('HttpClient DrinkBooking subscribe next:',v),
+        error: (e) => {
+        console.error(e)
+        // Show error
+      },
+        complete: () => {
+          console.log('DrinkBooking success')
+          this.dialogRef.close()
+        }
+      })
+      // this.httpClient.post('https://drinkservice-11fde-default-rtdb.europe-west1.firebasedatabase.app/bookings.json', bookingForm.value).subscribe(response => console.log(response))
+    })
+  }
 }
