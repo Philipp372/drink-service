@@ -4,10 +4,10 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>
-      <img src="../../assets/apre-golfer-logo.png" width="50" height="48" class="center"/>
+      <img src="assets/apre-golfer-logo.png" width="50" height="48" class="center"/>
     </mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Dashboard</a>
+      <a mat-list-item href="/dashboard">Dashboard</a>
       <a mat-list-item routerLink="/list-of-drinks" routerLinkActive="active">Getränkeliste</a>
       <a mat-list-item href="#">Guthabenübersicht</a>
     </mat-nav-list>

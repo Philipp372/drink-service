@@ -22,7 +22,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 
 const routes: Routes = [
+  { path: 'dashboard', component: DashboardComponent, },
   { path: 'list-of-drinks', component: ListOfDrinksComponent },
+  { path: '',   redirectTo: '/dashboard', pathMatch: 'full' }
+  // { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
 ]
 
 
