@@ -125,7 +125,11 @@ export class BalancesComponent implements OnInit {
     .snack-bar-global {
       color: white;
       font-weight: bold;
-      padding-right: 100px;
+      width: 75%;
+    }
+    .snack-bar-global-button {
+      text-align: right;
+      width: 25%
     }
   `,
   ],
