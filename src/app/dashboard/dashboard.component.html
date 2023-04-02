@@ -49,7 +49,7 @@
 
 <div>
 <div class="row">
-    <div class="col-sm-12 col-4 col-md-4">
+    <div class="col-12 col-md-4 col-lg-4">
         <div class="card">
             <img class="card-img-top-icon" src="assets/overallBookingCount.png">
             <div class="card-body">
@@ -60,7 +60,7 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-12 col-4 col-md-4">
+    <div class="col-12 col-md-4 col-lg-4">
         <div class="card">
             <img class="card-img-top-icon" src="assets/overallDrinkCount.png">
             <div class="card-body">
@@ -71,7 +71,7 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-12 col-4 col-md-4">
+    <div class="col-12 col-md-4 col-lg-4">
         <div class="card">
             <img class="card-img-top-icon" src="assets/overallCost.png">
             <div class="card-body">
@@ -86,7 +86,7 @@
 </div>
 
 <div class="row">
-    <div class="col-sm-12 col-4 col-md-4" *ngFor="let drinkConsumationItem of drinkConsumationData">
+    <div class="col-12 col-md-4 col-lg-4" *ngFor="let drinkConsumationItem of drinkConsumationData">
         <div class="card">
             <img class="card-img-top" src="assets/{{drinkConsumationItem.imageUrl}}" [style.width.px]="calculateWidth(drinkConsumationItem.imageSize)" [style.height.px]="calculateWidth(drinkConsumationItem.imageSize)">
             <div class="card-body">
