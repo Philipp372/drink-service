@@ -99,7 +99,7 @@ export class BalancesComponent implements OnInit {
 
   openSnackBar() {
     this._snackBar.openFromComponent(SnackBarGlobalComponent, {
-      duration: 115  * 1000, // 5 seconds
+      duration: 5 * 1000, // 5 seconds
     });
   }
 
@@ -109,8 +109,6 @@ export class BalancesComponent implements OnInit {
     private _snackBar: MatSnackBar) {
     console.log('user count:',_globalService.userList.length)
     this.userList = this._globalService.userList
-
-    this.openSnackBar()
   }
 }
 
