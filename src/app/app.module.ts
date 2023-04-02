@@ -24,6 +24,7 @@ import { MatCard, MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { BalancesComponent } from './balances/balances.component'
 import { GlobalService } from './global.service';
+import { LoginComponent } from './auth/login/login.component';
 
 
 const routes: Routes = [
@@ -31,8 +32,8 @@ const routes: Routes = [
   { path: 'list-of-drinks', component: ListOfDrinksComponent },
   { path: 'balances', component: BalancesComponent },
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
-  // { path: '', redirectTo: '/dashboard', pathMatch: 'full' },  
-  // { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
+  // { path: '', redirectTo: '/auth/login', pathMatch: 'full' },  
+  { path: '**', component: LoginComponent },  // Wildcard route for a 404 page
 ]
 
 
