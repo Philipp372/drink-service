@@ -5,3 +5,7 @@
 .negative {
     color: red;
 }
+
+.row {
+    padding: 20;
+}

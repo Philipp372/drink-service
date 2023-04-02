@@ -24,14 +24,14 @@ export class ListOfDrinksComponent {
   }
 
   constructor(
-    private globalservice: GlobalService,
+    private globalService: GlobalService,
     public dialog: MatDialog
   ) {
 
   }
   
   ngOnInit(): void {
-    this._drinksData = this.globalservice.drinksData;
+    this._drinksData = this.globalService.drinksData;
   }
 
   calculateWidth(imageSize: number){
