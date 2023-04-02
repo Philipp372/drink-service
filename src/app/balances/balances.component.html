@@ -55,24 +55,29 @@
  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
-
-<!-- <div class="row">
-    <div class="col-sm-6">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-    </div>
-  </div> -->
+<p style="margin-top: 50px">
+  Guthaben aufladen (nur Philipp)
+</p>
+<div class="row">
+    <form #balanceBookingForm="ngForm" (ngSubmit)="performBalanceBooking(balanceBookingForm)">
+      <mat-form-field class="col-4 col-xs-12 col-sm-12" appearance="outline">
+        <mat-label>Wieviel <mat-icon>euro_symbol</mat-icon> <mat-icon>question_mark</mat-icon></mat-label>
+        <input ngModel required matInput minlength="1" maxlength="5" onlyNumber name="amount" type="text" #amount="ngModel"
+          autocomplete="apds_amount" />
+      </mat-form-field>
+        <mat-form-field class="col-4 col-xs-12 col-sm-12">
+          <mat-label>Wer kriegt's auf's Konto?</mat-label>
+          <mat-select matInput required ngModel name="userName"><!-- [formControl]="personFormControl" -->
+            <mat-option *ngFor="let user of globalService.userList" [value]="user.userName">{{user.firstName}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <!-- <span class="drink-count-hint">
+          Die ausgewählte Getränkeanzahl wird auf alle angegebenen Personen gebucht!
+        </span> -->
+          <button type="submit" [disabled]="balanceBookingForm.invalid" mat-fab extended color="primary" class="col-4 col-xs-12 col-sm-12">
+            <mat-icon>done_outline</mat-icon>
+            <!-- https://www.angularjswiki.com/angular/angular-material-icons-list-mat-icon-list/ -->
+            Buchung abschließen
+          </button>
+    </form>
+  </div>

@@ -25,6 +25,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { BalancesComponent } from './balances/balances.component'
 import { GlobalService } from './global.service';
 import { LoginComponent } from './auth/login/login.component';
+import { MatInputModule } from '@angular/material/input';
+import { OnlyNumberDirective } from './only-number.directive'
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 const routes: Routes = [
@@ -44,7 +47,8 @@ const routes: Routes = [
     DashboardComponent,
     ListOfDrinksComponent,
     BookDrinkDialog,
-    BalancesComponent
+    BalancesComponent,
+    OnlyNumberDirective
   ],
   imports: [
     BrowserModule,
@@ -60,6 +64,7 @@ const routes: Routes = [
     MatDialogModule,
     MatFormFieldModule,
     FormsModule,
+    MatInputModule,
     ReactiveFormsModule,
     MatSelectModule,
     BrowserModule,
@@ -68,7 +73,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
   providers: [
-    GlobalService
+    GlobalService,
+    MatSnackBar
   ],
   bootstrap: [AppComponent]
 })
