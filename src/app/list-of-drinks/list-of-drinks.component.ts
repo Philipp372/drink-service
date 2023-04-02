@@ -1,11 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import { DrinksData } from 'shared/DrinksData';
-import { DrinksService } from './drinks.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'shared/Users';
 import { DrinkBooking } from 'shared/DrinkBooking';
+import { GlobalService } from '../global.service';
 
 @Component({
   selector: 'app-list-of-drinks',
@@ -24,14 +24,14 @@ export class ListOfDrinksComponent {
   }
 
   constructor(
-    private service: DrinksService,
+    private globalservice: GlobalService,
     public dialog: MatDialog
   ) {
 
   }
   
   ngOnInit(): void {
-    this._drinksData = this.service.drinksData;
+    this._drinksData = this.globalservice.drinksData;
   }
 
   calculateWidth(imageSize: number){
