@@ -12,6 +12,15 @@ export class GlobalService implements OnInit {
 
   // breakpoints: string[] = [Breakpoints.WebLandscape]
   // isSmallScreen: boolean = false
+
+  private _loggedIn: boolean = false
+  get loggedIn() {
+    return this._loggedIn
+  }
+  set loggedIn(flag) {
+    this._loggedIn = flag
+  }
+
   private _userList: User[] = []
   get userList() {
     return this._userList
