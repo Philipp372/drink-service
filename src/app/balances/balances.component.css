@@ -9,3 +9,13 @@
 .row {
     padding: 20;
 }
+
+.balance-booking-headline {
+    margin-top: 50px;
+    margin-left: 20px;
+}
+
+.balance-booking-content {
+    margin-left: 20px;
+    margin-right: 20px;
+}

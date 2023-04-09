@@ -20,6 +20,10 @@ export class BalancesComponent implements OnInit {
   displayedColumns: string[] = ['image', 'userName', 'currentBalanceAmount', 'overallBookingAmount', 'bookingCount', 'numberOfDrinksConsumed'];
 
   ngOnInit(): void {
+    this.updateBalances()
+  }
+
+  updateBalances() {
     this.httpClient.get('https://drinkservice-11fde-default-rtdb.europe-west1.firebasedatabase.app/balances.json')
     .subscribe({
       next: (response) => {
@@ -90,6 +94,8 @@ export class BalancesComponent implements OnInit {
       complete: () => {
         console.log('performBalanceBooking success')
         bookingForm.reset()
+        bookingForm.resetForm()
+        this.updateBalances()
 
         this.openSnackBar()
       }

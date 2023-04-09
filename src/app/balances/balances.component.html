@@ -16,7 +16,7 @@
  <!-- currentBalanceAmount Column -->
  <ng-container matColumnDef="currentBalanceAmount">
      <th mat-header-cell *matHeaderCellDef> Aktuelles Guthaben </th>
-     <td mat-cell *matCellDef="let element" class="col-2" [ngClass]="{
+     <td mat-cell *matCellDef="let element" class="col-2 text-end" [ngClass]="{
       'positive' : element.currentBalanceAmount >= 0,
       'negative' : element.currentBalanceAmount < 0
    }"> {{element.currentBalanceAmount | currency: 'EUR' }} </td>
@@ -25,19 +25,19 @@
   <!-- overallBookingAmount Column -->
   <ng-container matColumnDef="overallBookingAmount">
     <th mat-header-cell *matHeaderCellDef> Summe aller Aufladungen </th>
-    <td mat-cell *matCellDef="let element" class="col-2"> {{element.overallBookingAmount | currency: 'EUR' }} </td>
+    <td mat-cell *matCellDef="let element" class="col-2 text-end"> {{element.overallBookingAmount | currency: 'EUR' }} </td>
 </ng-container>
 
   <!-- bookingCount Column -->
   <ng-container matColumnDef="bookingCount">
-    <th mat-header-cell *matHeaderCellDef> Summe aller Aufladungen </th>
-    <td mat-cell *matCellDef="let element" class="col-2"> {{element.bookingCount }} </td>
+    <th mat-header-cell *matHeaderCellDef> Anzahl aller Buchungen </th>
+    <td mat-cell *matCellDef="let element" class="col-2 text-end"> {{element.bookingCount }} </td>
 </ng-container>
 
 <!-- numberOfDrinksConsumed Column -->
 <ng-container matColumnDef="numberOfDrinksConsumed">
-  <th mat-header-cell *matHeaderCellDef> Summe konsumierte Getränke </th>
-  <td mat-cell *matCellDef="let element" class="col-2"> {{element.numberOfDrinksConsumed }} </td>
+  <th mat-header-cell *matHeaderCellDef> Anzahl konsumierte Getränke </th>
+  <td mat-cell *matCellDef="let element" class="col-2 text-end"> {{element.numberOfDrinksConsumed }} </td>
 </ng-container>
 
 <!-- Price Column -->
@@ -55,7 +55,7 @@
  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
-<p style="margin-top: 50px">
+<p class="balance-booking-headline">
   Guthaben aufladen (nur Philipp)
 </p>
 <div class="balance-booking-content">
