@@ -36,7 +36,7 @@ const routes: Routes = [
   { path: 'balances', component: BalancesComponent },
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
   // { path: '', redirectTo: '/auth/login', pathMatch: 'full' },  
-  { path: '**', pathMatch:'full', component: LoginComponent },  // Wildcard route for a 404 page
+  { path: '**', component: LoginComponent },  // Wildcard route for a 404 page
 ]
 
 
