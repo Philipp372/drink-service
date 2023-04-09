@@ -61,21 +61,8 @@ export class BookDrinkDialog {
   drinkCountList: number[] = [1, 2, 3, 4, 5, 6, 7, 8]
   personList: User[] = [];
 
-  constructor(public dialogRef: MatDialogRef<BookDrinkDialog>, @Inject(MAT_DIALOG_DATA) public data: DrinksData, private httpClient: HttpClient) {
-    this.httpClient.get('https://drinkservice-11fde-default-rtdb.europe-west1.firebasedatabase.app/users.json')
-    .subscribe({
-      next: (response) => {
-        console.log('Firebase Users:', response)
-        let personArray = Object.values(response)
-        console.log('personArray: ',personArray)
-        this.personList = personArray
-      },
-      error: (e) => {
-      console.error(e)
-      // Show error
-      },
-      complete: () => {}
-    })
+  constructor(public dialogRef: MatDialogRef<BookDrinkDialog>, @Inject(MAT_DIALOG_DATA) public data: DrinksData, private httpClient: HttpClient, private globalService: GlobalService) {
+    this.personList = globalService.userListBooking
   }
 
   performBooking(bookingForm: NgForm, drink: DrinksData) {

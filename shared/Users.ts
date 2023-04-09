@@ -6,6 +6,7 @@ export class User {
         public lastLogin: number,
         public password: string,
         public passwordHash: string,
+        public bookingAllowed: boolean,
         public locked: boolean
     ) {
         

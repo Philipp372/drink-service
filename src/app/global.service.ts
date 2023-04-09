@@ -29,6 +29,14 @@ export class GlobalService implements OnInit {
     this._userList = data
   }
 
+  private _userListBooking: User[] = []
+  get userListBooking() {
+    return this._userListBooking
+  }
+  set userListBooking(data) {
+    this._userListBooking = data
+  }
+
   private _drinkBookings: DrinkBooking[] = []
   get drinkBookings() {
     return this._drinkBookings
@@ -70,6 +78,7 @@ export class GlobalService implements OnInit {
         let personArray = Object.values(response)
         console.log('personArray: ',personArray)
         this.userList = personArray
+        this.userListBooking = personArray.filter(user => user.bookingAllowed === true)
       },
       error: (e) => {
       console.error(e)
