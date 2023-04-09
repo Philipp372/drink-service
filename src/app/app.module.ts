@@ -34,9 +34,9 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, },
   { path: 'list-of-drinks', component: ListOfDrinksComponent },
   { path: 'balances', component: BalancesComponent },
-  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) }
   // { path: '', redirectTo: '/auth/login', pathMatch: 'full' },  
-  { path: '**', component: LoginComponent },  // Wildcard route for a 404 page
+  // { path: '**', component: LoginComponent },  // Wildcard route for a 404 page
 ]
 
 
