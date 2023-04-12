@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
     let userMatch = this.globalService.userList.filter(user => user.userName === loginForm.value.username && user.password === loginForm.value.password)
     // console.log("userMatch=",JSON.stringify(userMatch))
     this.globalService.loggedIn = userMatch.length === 1
+    this.globalService.loggedInUser = userMatch.length === 1 ? userMatch[0] : undefined
     if (this.globalService.loggedIn) {
       this.router.navigate(['/dashboard'])
     }

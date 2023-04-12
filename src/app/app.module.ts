@@ -29,11 +29,12 @@ import { MatInputModule } from '@angular/material/input';
 import { OnlyNumberDirective } from './only-number.directive'
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+import { AuthGuard } from './shared/guard/auth.guard';
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent, },
-  { path: 'list-of-drinks', component: ListOfDrinksComponent },
-  { path: 'balances', component: BalancesComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'list-of-drinks', component: ListOfDrinksComponent, canActivate: [AuthGuard] },
+  { path: 'balances', component: BalancesComponent , canActivate: [AuthGuard]},
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
   // { path: '', redirectTo: '/auth/login', pathMatch: 'full' },  
   { path: '**', component: LoginComponent },  // Wildcard route for a 404 page

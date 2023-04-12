@@ -10,6 +10,10 @@
   background: inherit;
 }
 
+.topnav {
+  text-align:right;
+}
+
 .mat-toolbar.mat-primary {
   position: sticky;
   top: 0;
