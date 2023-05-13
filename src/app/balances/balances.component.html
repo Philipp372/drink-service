@@ -58,18 +58,18 @@
 <p class="balance-booking-headline">
   Guthaben aufladen (nur Philipp)
 </p>
-<div class="balance-booking-content">
+<div class="balance-booking-content" [ngClass]="{disabledBooking: !bookingAllowed}">
     <form #balanceBookingForm="ngForm" (ngSubmit)="performBalanceBooking(balanceBookingForm)">
       <div class="row">
       <mat-form-field class="col-12 col-md-4 col-lg-4" appearance="outline">
         <mat-label>Wieviel <mat-icon>euro_symbol</mat-icon> <mat-icon>question_mark</mat-icon></mat-label>
         <input ngModel required matInput minlength="1" maxlength="5" onlyNumber name="amount" type="text" #amount="ngModel"
-          autocomplete="apds_amount" />
+          autocomplete="apds_amount" [disabled]="!bookingAllowed"/>
       </mat-form-field>
         <mat-form-field class="col-12 col-md-4 col-lg-4">
           <mat-label>Wer kriegt's auf's Konto?</mat-label>
           <mat-select matInput required ngModel name="userName"><!-- [formControl]="personFormControl" -->
-            <mat-option *ngFor="let user of globalService.userListBooking" [value]="user.userName">{{user.firstName}}</mat-option>
+            <mat-option *ngFor="let user of globalService.userListBooking" [value]="user.userName" [disabled]="!bookingAllowed">{{user.firstName}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>

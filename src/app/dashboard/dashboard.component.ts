@@ -27,52 +27,43 @@ export class DashboardComponent implements OnInit {
   //   this.myBreakpoint = (event.target && event.target?.innerWidth <= 400) ? 1 : 6;
   // }
 
-  constructor(private globalService: GlobalService, private httpClient: HttpClient) {
-    this.httpClient.get('https://drinkservice-11fde-default-rtdb.europe-west1.firebasedatabase.app/bookings.json').subscribe(
-      {
-        next: (response) => {
-          console.log('Dashboard HttpClient next() response=',response)
-          this.drinkBookings = Object.values(response)
-          this.overallBookingsCount = this.drinkBookings.length
-          
-          this.overallDrinkCount = 0
+  constructor(private globalService: GlobalService) {
+    this.prepareDashboardData()
+  }
+  
+  prepareDashboardData() {
+    if (this.globalService.drinkBookings) {
+      console.log('Dashboard constructor drinkBookings=', this.drinkBookings.length, " // drinksData=",this.globalService.drinksData.length)
+      this.drinkBookings = this.globalService.drinkBookings
+      this.overallBookingsCount = this.drinkBookings.length
+      
+      this.overallDrinkCount = 0
 
-          this.globalService.drinksData.forEach(drink => {
-            let allBookingsForSingleDrink = this.drinkBookings.filter(booking => booking.drinkId === drink.drinkId)
-            
-            // let drinkConsumationCount : DrinkBooking = allBookingsForSingleDrink.reduce(book => book.count)
-            let drinkConsumationCount = 0
-            
-            allBookingsForSingleDrink.forEach(item => {
-              drinkConsumationCount += item.count
-              this.overallCost += item.count*drink.price
-            })
-            this.overallDrinkCount += drinkConsumationCount
-            
+      this.globalService.drinksData.forEach(drink => {
+        let allBookingsForSingleDrink = this.drinkBookings.filter(booking => booking.drinkId === drink.drinkId)
+        
+        // let drinkConsumationCount : DrinkBooking = allBookingsForSingleDrink.reduce(book => book.count)
+        let drinkConsumationCount = 0
+        
+        allBookingsForSingleDrink.forEach(item => {
+          drinkConsumationCount += item.count
+          this.overallCost += item.count*drink.price
+        })
+        this.overallDrinkCount += drinkConsumationCount
+        
 
-            let statData = new DrinkStatisticData(
-              drink.drinkId, 
-              drink.name, 
-              drinkConsumationCount,
-              allBookingsForSingleDrink.length,
-              drink.imageUrl,
-              drink.imageSize)
-              this.drinkConsumationData.push(statData)
+        let statData = new DrinkStatisticData(
+          drink.drinkId, 
+          drink.name, 
+          drinkConsumationCount,
+          allBookingsForSingleDrink.length,
+          drink.imageUrl,
+          drink.imageSize)
+          this.drinkConsumationData.push(statData)
 
-              console.log('allBookingsForSingleDrink drinkId=',drink.drinkId, ' // drinkConsumationCount=',drinkConsumationCount, ' // bookingCount=',allBookingsForSingleDrink.length,' // this.overallDrinkCount=',this.overallDrinkCount)
-          })
-        },
-        error: (e) => {
-        console.error(e)
-        // Show error
-      },
-        complete: () => {
-          console.log('Dashboard HttpClient complete()')
-          // console.log("cardColumns=",this.cardColumns," isSmallScreen=", this.globalService.isSmallScreen)
-
-        }
-      }
-    )
+          console.log('allBookingsForSingleDrink drinkId=',drink.drinkId, ' // drinkConsumationCount=',drinkConsumationCount, ' // bookingCount=',allBookingsForSingleDrink.length,' // this.overallDrinkCount=',this.overallDrinkCount)
+      })
+    }
   }
 
   calculateWidth(imageSize: number){

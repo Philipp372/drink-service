@@ -18,13 +18,14 @@ export class BalancesComponent implements OnInit {
   balanceData: BalanceData[] = []
   balanceDataGrouped: BalanceStatisticData[] = []
   displayedColumns: string[] = ['image', 'userName', 'currentBalanceAmount', 'overallBookingAmount', 'bookingCount', 'numberOfDrinksConsumed'];
+  bookingAllowed: boolean = this.globalService.loggedInUser.email.startsWith('philipp.r@')
 
   ngOnInit(): void {
     this.updateBalances()
   }
 
   updateBalances() {
-    this.httpClient.get('https://drinkservice-11fde-default-rtdb.europe-west1.firebasedatabase.app/balances.json')
+    this.httpClient.get('https://drinkservice-11fde-default-rtdb.europe-west1.firebasedatabase.app/balances.json?auth=' + this.globalService.firebaseUserIdToken)
     .subscribe({
       next: (response) => {
         console.log('Firebase Balances:', response, ' // user length:',this.globalService.userList.length)

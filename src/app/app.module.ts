@@ -11,6 +11,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { environment } from './environments/environments';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ListOfDrinksComponent } from './list-of-drinks/list-of-drinks.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -71,6 +79,11 @@ const routes: Routes = [
     BrowserModule,
     MatCardModule,
     MatGridListModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
     RouterModule.forRoot(routes)
   ],
   providers: [

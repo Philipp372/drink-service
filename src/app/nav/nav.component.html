@@ -24,7 +24,16 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <!-- <span>Après-Golfer</span> -->
-      <span class="topnav">{{globalService.loggedInUser ? globalService.loggedInUser.firstName : ''}}</span>
+      <!-- <span class="topnav">Logged in user: {{globalService.loggedInUser ? globalService.loggedInUser.email : ''}}</span> -->
+      <!-- <span><a *ngIf="globalService.loggedIn" (click)="globalService.SignOut()">Logout</a></span> -->
+      <!-- <p style="float:left;">
+        Logged in user: {{globalService.loggedInUser ? globalService.loggedInUser.email : ''}}
+        <span style="float:right;">
+          <a *ngIf="globalService.loggedIn" (click)="globalService.SignOut()">Logout</a>
+        </span>
+    </p> -->
+      <p class="nav-top-left">Logged in user: {{globalService.loggedInUser ? globalService.loggedInUser.email : ''}}</p>
+      <!-- <p class="nav-top-right"><a class="nav-top-right" *ngIf="globalService.loggedIn" (click)="globalService.SignOut()">Logout</a></p> -->
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>

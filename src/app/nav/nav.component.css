@@ -14,10 +14,35 @@
   text-align:right;
 }
 
+p.nav-top-left {
+  text-align: left; width:49%; display: inline-block;
+}
+
+p.nav-top-right {
+  text-align: right; width:50%;  display: inline-block; color: white;
+}
+
 .mat-toolbar.mat-primary {
   position: sticky;
   top: 0;
   z-index: 1;
+}
+
+a.nav-top-right:link {
+  color: white;
+  text-decoration: none;
+}
+a.nav-top-right:visited  {
+  color: white;
+  text-decoration: none;
+}
+a.nav-top-right:hover {
+  color: white;
+  text-decoration: none;
+}
+a.nav-top-right:active {
+  color: white;
+  text-decoration: none;
 }
 
 a.disabled {

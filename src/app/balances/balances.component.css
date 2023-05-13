@@ -19,3 +19,8 @@
     margin-left: 20px;
     margin-right: 20px;
 }
+
+.disabledBooking {
+    pointer-events: none;
+    opacity: 2.0;
+}
