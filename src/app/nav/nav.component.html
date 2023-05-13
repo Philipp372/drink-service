@@ -33,7 +33,7 @@
         </span>
     </p> -->
       <p class="nav-top-left">Logged in user: {{globalService.loggedInUser ? globalService.loggedInUser.email : ''}}</p>
-      <!-- <p class="nav-top-right"><a class="nav-top-right" *ngIf="globalService.loggedIn" (click)="globalService.SignOut()">Logout</a></p> -->
+      <p class="nav-top-right"><a class="nav-top-right" *ngIf="globalService.loggedIn" (click)="globalService.SignOut()">Logout</a></p>
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>

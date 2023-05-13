@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GlobalService } from 'src/app/global.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +12,21 @@ import { GlobalService } from 'src/app/global.service';
 })
 
 export class LoginComponent implements OnInit {
-  constructor(private globalService: GlobalService, private router: Router) {
+  constructor(private globalService: GlobalService, private router: Router, private activatedRoute: ActivatedRoute) {
   }
 
-  ngOnInit(): void {}
+  prefillUser: string = ''
+  prefillPassword: string = ''
+
+  ngOnInit(): void {
+    this.activatedRoute.queryParams
+      .subscribe(params => {
+        console.log(params); // { orderby: "price" }
+        this.prefillUser = params['user'];
+        this.prefillPassword = params['password'];
+      }
+    );
+  }
 
   onLogin(loginForm: NgForm) {
     console.log(loginForm.value);
